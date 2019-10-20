@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title>Vue.js Guide</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <h1>Template Syntax</h1>
+    <div id="app">
+      <h2>Interpolations</h2>
+
+      <h3>Text</h3>
+      <div>Message: {{ msg }}</div>
+      <div v-once>This will never change: {{ msg }}</div>
+
+      <h3>Raw Html</h3>
+      <p>Using mustaches: {{ rawHtml }}</p>
+      <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+
+      <h3>Attributes</h3>
+      <div v-bind:id="dynamicId">Id should be {{ dynamicId }}</div>
+      <button v-bind:disabled="isButtonDisabled">Button</button>
+
+      <h3>Using JavaScript Expressions</h3>
+      <div>{{ dynamicId + 1 }}</div>
+      <div>Button is {{ isButtonDisabled ? "disabled" : "enabled" }}</div>
+      <div>
+        {{
+          msg
+            .split("")
+            .reverse()
+            .join("")
+        }}
+      </div>
+      <div v-bind:id="'list-' + dynamicId"></div>
+
+      <h2>Directives</h2>
+      <p v-if="seen">Now you see me</p>
+
+      <h3>Arguments</h3>
+      <a v-bind:href="url">Vue.js</a>
+
+      <h3>Dynamic Arguments</h3>
+      <a v-bind:[attributeName]="url">Vue.js</a>
+
+      <h3>Modifiers</h3>
+      <form v-on:submit.prevent="onSubmit">...</form>
+
+      <h2>Shorthands</h2>
+
+      <h3>v-bind Shorthand</h3>
+      <!-- full syntax -->
+      <a v-bind:href="url"> ... </a>
+      <!-- shorthand -->
+      <a :href="url"> ... </a>
+      <!-- shorthand with dynamic argument (2.6.0+) -->
+      <a :[attributeName]="url"> ... </a>
+
+      <h3>v-on Shorthand</h3>
+      <!-- full syntax -->
+      <a v-on:click="doSomething"> ... </a>
+      <!-- shorthand -->
+      <a @click="doSomething"> ... </a>
+      <!-- shorthand with dynamic argument (2.6.0+) -->
+      <a @[event]="doSomething"> ... </a>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          msg: "This is a Message",
+          rawHtml: '<span style="color: red">This should be red.</span>',
+          dynamicId: 123,
+          isButtonDisabled: true,
+          seen: true,
+          url: "https://vuejs.org/",
+          attributename: "href",
+          event: "click"
+        },
+        methods: {
+            doSomething: function(event) {
+                console.log("doSomething");                
+            }
+        }
+      });
+    </script>
+  </body>
+</html>

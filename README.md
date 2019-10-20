@@ -1,5 +1,6 @@
 # Guide
 
-* Installation
-* Introduction
-* The Vue Instance
+- Installation
+- Introduction
+- The Vue Instance
+- Template Syntax
