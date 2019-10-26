@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title>Vue.js Guide</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <h1>Class and Style Bindings</h1>
+    
+    <h2>Binding HTML Classes</h2>
+    
+    <div id="app">
+      <h3>Object Syntax</h3>
+      <div
+        class="static"
+        v-bind:class="{ active: isActive, 'text-danger': hasError }"
+      >
+        static active
+      </div>
+      <div v-bind:class="classObject">class object</div>
+      <div v-bind:class="classObjectComputed">class object computed</div>
+    </div>
+
+    <div id="app2">
+      <h3>Array Syntax</h3>
+      <div v-bind:class="[activeClass, errorClass]"></div>
+      <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
+      <div v-bind:class="[{ active: isActive }, errorClass]"></div>
+    </div>
+
+    <h2>Binding Inline Styles</h2>
+
+    <div id="app3">
+        <h3>Object Syntax</h3>
+        <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">activeColor fontSize</div>
+
+        <h3>Array Syntax</h3>
+        <div v-bind:style="[baseStyles, overridingStyles]"></div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          isActive: true,
+          hasError: false,
+          classObject: {
+            active: true,
+            "text-danger": false
+          }
+        },
+        computed: {
+          classObjectComputed: function() {
+            return {
+              active: this.isActive && !this.hasError,
+              "text-danger": this.hasError
+            };
+          }
+        }
+      });
+      var app2 = new Vue({
+        el: "#app2",
+        data: {
+          isActive: true,
+          activeClass: "active",
+          errorClass: "text-danger"
+        }
+      });
+      var app3 = new Vue({
+        el: "#app3",
+        data: {
+          activeColor: 'red',
+          fontSize: 30
+        }
+      });
+    </script>
+  </body>
+</html>
