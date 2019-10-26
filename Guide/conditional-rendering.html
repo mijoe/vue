@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title>Vue.js Guide</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <h1>Conditional Rendering</h1>
+
+    <div id="app">
+      <h2>v-if</h2>
+      <h3 v-if="awesome">Vue is awesome!</h3>
+      <h3 v-else>Oh no 😢</h3>
+      <template v-if="ok">
+        <h1>Title</h1>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+      </template>
+      <div v-if="Math.random() > 0.5">
+        Now you see me
+      </div>
+      <div v-else>
+        Now you don't
+      </div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          awesome: true,
+          ok: true
+        },
+        computed: {}
+      });
+    </script>
+  </body>
+</html>
