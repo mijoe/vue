@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title>Vue.js Guide</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <h1>List Rendering</h1>
+
+    <h2>Mapping an Array to Elements with v-for</h2>
+
+    <ul id="app1">
+        <li v-for="item in items" :key="item.message">
+            {{ item.message }}
+        </li>
+    </ul>
+
+    <ul id="app2">
+        <li v-for="(item, index) in items">
+            {{ parentMessage }} - {{ index }} - {{ item.message }}
+        </li>
+    </ul>
+
+    <h2>v-for with an Object</h2>
+
+    <ul id="v-for-object" class="demo">
+        <li v-for="(value, name, index) in object">
+            {{ index }}. {{ name }}: {{ value }}
+        </li>
+    </ul>
+
+    <script>
+        var app1 = new Vue({
+            el: "#app1",
+            data: {
+                items: [
+                    { message: 'Foo' },
+                    { message: 'Bar' }
+                ]
+            }
+        });
+        var example2 = new Vue({
+            el: '#app2',
+            data: {
+                parentMessage: 'Parent',
+                items: [
+                    { message: 'Foo' },
+                    { message: 'Bar' }
+                ]
+            }
+        })
+        new Vue({
+            el: '#v-for-object',
+            data: {
+                object: {
+                    title: 'How to do lists in Vue',
+                    author: 'Jane Doe',
+                    publishedAt: '2016-04-10'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
