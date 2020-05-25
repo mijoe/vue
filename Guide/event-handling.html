@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title>Vue.js Guide</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <h1>Event Handling</h1>
+
+    <h2>Listening to Events</h2>
+
+    <div id="example-1">
+        <button v-on:click="counter += 1">Add 1</button>
+        <p>The button above has been clicked {{ counter }} times.</p>
+    </div>
+
+    <h2>Method Event Handlers</h2>
+
+    <div id="example-2">
+        <!-- `greet` is the name of a method defined below -->
+        <button v-on:click="greet">Greet</button>
+    </div>
+
+    <h2>Methods in Inline Handlers</h2>
+
+    <div id="example-3">
+        <button v-on:click="say('hi')">Say hi</button>
+        <button v-on:click="say('what')">Say what</button>
+    </div>
+
+    <script>
+        var example1 = new Vue({
+            el: '#example-1',
+            data: {
+                counter: 0
+            }
+        })
+
+        var example2 = new Vue({
+            el: '#example-2',
+            data: {
+                name: 'Vue.js'
+            },
+            // define methods under the `methods` object
+            methods: {
+                greet: function (event) {
+                    // `this` inside methods points to the Vue instance
+                    alert('Hello ' + this.name + '!')
+                    // `event` is the native DOM event
+                    if (event) {
+                        alert(event.target.tagName)
+                    }
+                }
+            }
+        })
+
+        new Vue({
+            el: '#example-3',
+            methods: {
+                say: function (message) {
+                    alert(message)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
